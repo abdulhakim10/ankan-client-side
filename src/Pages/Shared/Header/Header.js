@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div>
+        <div className='border border-purple-600'>
            <Navbar
   fluid={true}
   rounded={true}
@@ -33,15 +33,6 @@ const Header = () => {
           name@flowbite.com
         </span>
       </Dropdown.Header>
-      <Dropdown.Item>
-        Dashboard
-      </Dropdown.Item>
-      <Dropdown.Item>
-        Settings
-      </Dropdown.Item>
-      <Dropdown.Item>
-        Earnings
-      </Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item>
         Sign out
@@ -53,17 +44,14 @@ const Header = () => {
     <Link to='/'>
       Home
     </Link>
-    <Link to=''>
-      About
-    </Link>
     <Link to='/services'>
       Services
     </Link>
     <Link to=''>
-      Pricing
+      About
     </Link>
-    <Link to=''>
-      Contact
+    <Link to='/login'>
+      Login
     </Link>
   </Navbar.Collapse>
 </Navbar>
