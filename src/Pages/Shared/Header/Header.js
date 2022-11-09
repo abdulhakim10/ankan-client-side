@@ -1,8 +1,30 @@
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
-import React from 'react';
+import { async } from '@firebase/util';
+import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+  const {user,logOut} = useContext(AuthContext);
+
+  const handleLogOut = () => {
+     logOut()
+     .then(() => {})
+     .catch(err => console.error(err))
+  }
+
+  const menuItems = <>
+    <li><Link to='/'> Home</Link></li>
+    <li><Link to='/services'>Services</Link></li>
+    <>{
+      user?.email ?
+    <li>
+      <Button onClick={handleLogOut} gradientDuoTone='purpleToBlue' size='xs'>Log Out</Button>
+    </li>
+    :
+    <li> <Link to='/login'>Login</Link></li>
+    }</>
+  </>
     return (
         <div className='border border-purple-600'>
            <Navbar
@@ -28,10 +50,18 @@ const Header = () => {
     >
       <Dropdown.Header>
         <span className="block text-sm">
-          Bonnie Green
+          {user?.email ?
+          user?.displayName
+          :
+          'Profile Name'
+          }
         </span>
         <span className="block truncate text-sm font-medium">
-          name@flowbite.com
+        {user?.email ?
+          user?.email
+          :
+          'user@email'
+          }
         </span>
       </Dropdown.Header>
       <Dropdown.Divider />
@@ -42,18 +72,7 @@ const Header = () => {
     <Navbar.Toggle />
   </div>
   <Navbar.Collapse>
-    <Link to='/'>
-      Home
-    </Link>
-    <Link to='/services'>
-      Services
-    </Link>
-    <Link to=''>
-      About
-    </Link>
-    <Link to='/login'>
-      Login
-    </Link>
+    {menuItems}
   </Navbar.Collapse>
 </Navbar>
         </div>
