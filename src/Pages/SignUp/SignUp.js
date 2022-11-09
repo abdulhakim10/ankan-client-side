@@ -12,11 +12,12 @@ const SignUp = () => {
 
         const form = event.target;
         const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
 
         // user Sign Up
-        await signUp(email, password, name)
+        await signUp(email, password, name, photoURL)
 
     }
 
@@ -41,6 +42,22 @@ const SignUp = () => {
                         type="text"
                         name='name'
                         placeholder="Enter Your Name"
+                        required={true}
+                        shadow={true}
+                    />
+                </div>
+                <div>
+                    <div className="mb-2 block">
+                        <Label
+                            htmlFor="photoURL"
+                            value="Photo URL"
+                        />
+                    </div>
+                    <TextInput
+                        id="photoURL"
+                        type="text"
+                        name='photoURL'
+                        placeholder="Enter Your photoURL"
                         required={true}
                         shadow={true}
                     />

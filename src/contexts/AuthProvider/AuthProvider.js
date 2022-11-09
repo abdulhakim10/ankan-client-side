@@ -13,10 +13,11 @@ const AuthProvider = ({children}) => {
 
 
     // User Create with Email-Password
-    const signUp = async(email, password, name) => {
+    const signUp = async(email, password, name, photoURL) => {
 
         const profile = {
-            displayName: name
+            displayName: name,
+            photoURL: photoURL
         }
        await createUserWithEmailAndPassword(auth, email, password);
        await updateProfile(auth.currentUser, profile)

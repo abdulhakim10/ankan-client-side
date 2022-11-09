@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -46,7 +45,7 @@ const Header = () => {
     <Dropdown
       arrowIcon={false}
       inline={true}
-      label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
+      label={<Avatar alt="User settings" img={user?.photoURL} rounded={true}/>}
     >
       <Dropdown.Header>
         <span className="block text-sm">
