@@ -18,7 +18,7 @@ const SignUp = () => {
 
         // user Sign Up
         await signUp(email, password, name, photoURL)
-
+        form.reset()
     }
 
     // Google sign in

@@ -19,6 +19,8 @@ const Header = () => {
       user?.email ?
     <li>
       <Button onClick={handleLogOut} gradientDuoTone='purpleToBlue' size='xs'>Log Out</Button>
+      <li><Link to='/myreviews'>My Reviews</Link></li>
+      <li><Link to='/addservice'>Add Service</Link></li>
     </li>
     :
     <li> <Link to='/login'>Login</Link></li>

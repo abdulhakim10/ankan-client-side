@@ -1,4 +1,5 @@
 import { Button } from 'flowbite-react';
+import { comment } from 'postcss';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -44,6 +45,9 @@ const Service = () => {
             // console.log(data)
         })
     },[])
+
+    const selectedComments = comments.filter(comment => comment.service === service_id)
+    // console.log('filter',selected)
     return (
         <div className='m-12'>
             <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -68,10 +72,10 @@ const Service = () => {
                 <h2 className="text-2xl">To add review Please <Link className='text-blue-600' to='/login'><u>login</u></Link> first</h2>
             }
                 <div>
+                    
                     {
-                        comments.map(comment => <Review 
+                        selectedComments.map(comment => <Review 
                             key={comment._id}
-                            service_id={service_id}
                             comment={comment}
                             ></Review> )
                     }

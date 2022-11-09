@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../../Pages/Home/Home/Home";
+import MyReviews from "../../Pages/Home/Review/MyReviews";
+import AddService from "../../Pages/Home/Services/AddService";
 import Service from "../../Pages/Home/Services/Service";
 import Services from "../../Pages/Home/Services/Services";
 import Main from "../../Pages/Layout/Main";
@@ -36,6 +38,15 @@ export const routes = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/myreviews',
+                element: <MyReviews></MyReviews>
+            },
+            {
+                path: '/addservice',
+                loader: () => fetch('http://localhost:5000/services'),
+                element: <AddService></AddService>
             }
         ]
     }
