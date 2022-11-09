@@ -6,6 +6,7 @@ const Header = () => {
     return (
         <div className='border border-purple-600'>
            <Navbar
+           className='bg-purple-100'
   fluid={true}
   rounded={true}
 >

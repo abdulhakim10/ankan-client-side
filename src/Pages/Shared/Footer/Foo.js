@@ -5,12 +5,12 @@ import { BsFacebook, BsInstagram, BsTwitter, BsGithub } from 'react-icons/bs';
 const Foo = () => {
     return (
         <div className='border border-purple-600'>
-            <Footer container={true}>
+            <Footer className='bg-purple-100' container={true}>
                 <div className="w-full">
                     <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                         <div>
                             <Footer.Brand
-                                href="https://flowbite.com"
+                                href="https://flite.com"
                                 src="https://flowbite.com/docs/images/logo.svg"
                                 alt="Flowbite Logo"
                                 name="Ankan"
