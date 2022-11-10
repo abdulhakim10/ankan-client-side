@@ -5,10 +5,6 @@ const Edit = () => {
     const {review, _id} = useLoaderData();
     console.log(review, _id)
 
-    
-   
-
-
     const handleUpdate = (event) => {
         event.preventDefault();
         const review = event.target.updateReview.value;
@@ -16,7 +12,7 @@ const Edit = () => {
 
         console.log(updateReview)
 
-        fetch(`http://localhost:5000/update/${_id}`, {
+        fetch(`https://ankan-print-assignment-server.vercel.app/update/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

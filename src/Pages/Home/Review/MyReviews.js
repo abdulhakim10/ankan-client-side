@@ -9,36 +9,36 @@ const MyReviews = () => {
     const [newReviews, setNewReviews] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://ankan-print-assignment-server.vercel.app/reviews')
             .then(res => res.json())
             .then(data => {
                 setComments(data)
             })
     }, [newReviews])
-    const selectedReviews = comments.filter(comment => comment.email === user.email)
+    const selectedReviews = comments.filter(comment => comment.email === user?.email)
     console.log(selectedReviews)
 
-    
-   const handleDelete = (id) =>{
-    fetch(`http://localhost:5000/reviews/${id}`, {
-        method: 'DELETE',
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.deletedCount > 0){
-            const remaining = selectedReviews.filter(sR => sR._id !== id)
-            setNewReviews(remaining)
-        }
-    })
-    .catch(e => console.error(e))
-   }
+
+    const handleDelete = (id) => {
+        fetch(`https://ankan-print-assignment-server.vercel.app/reviews/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    const remaining = selectedReviews.filter(sR => sR._id !== id)
+                    setNewReviews(remaining)
+                }
+            })
+            .catch(e => console.error(e))
+    }
     return (
-        <div>
+        <div className='m-8'>
             <h2 className="text-2xl">Reviews: {selectedReviews.length}</h2>
             <div>
                 {
-                    selectedReviews.map(sR => <div className="overflow-x-auto w-full">
-                        <table className="table w-full">
+                    selectedReviews.map(sR => <div className="overflow-x-auto md:mx-auto md:w-3/5 m-4 border border-purple-600 rounded-lg">
+                        <table className="table w-4/5 mx-auto">
                             <tbody>
                                 <tr>
                                     <td>
@@ -55,11 +55,11 @@ const MyReviews = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <span  className="badge m-2 p-4 badge-ghost badge-sm">{sR.review}</span>
+                                        <span className="badge m-2 p-4 badge-ghost badge-sm">{sR.review}</span>
                                     </td>
-                                    <Link to={`/edit/${sR._id}`}><button className="btn-ghost">Edit</button></Link>
                                     <th>
-                                       <button onClick={() => handleDelete(sR._id)} className='btn btn-ghost'>X</button>
+                                    <Link to={`/edit/${sR._id}`}><button className="py-3 px-6 rounded-lg btn-ghost">Edit</button></Link>
+                                        <button onClick={() => handleDelete(sR._id)} className='btn btn-ghost ml-2'>Delete</button>
                                     </th>
                                 </tr>
                             </tbody>

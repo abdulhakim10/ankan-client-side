@@ -1,11 +1,13 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
   const { logIn, googleSignIn, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -20,7 +22,7 @@ const Login = () => {
       setUser(user)
       console.log(user)
       form.reset();
-      navigate('/');
+      navigate(from, {replace: true});
     })
     .catch(err => console.error(err))
 
@@ -30,7 +32,7 @@ const Login = () => {
   // Google Sign In
   const handleGoogleSignIn = async() => {
     await googleSignIn();
-    navigate('/');
+    navigate(from, {replace: true});
   }
   return (
     <div className='md:w-1/2 my-8 mx-auto border border-purple-600 p-8 rounded-lg'>

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../../Pages/Blog/Blog";
 import Home from "../../Pages/Home/Home/Home";
 import Edit from "../../Pages/Home/Review/Edit";
 import MyReviews from "../../Pages/Home/Review/MyReviews";
@@ -8,6 +9,9 @@ import Services from "../../Pages/Home/Services/Services";
 import Main from "../../Pages/Layout/Main";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
+
+
 
 
 export const routes = createBrowserRouter([
@@ -17,18 +21,18 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                loader:() => fetch('http://localhost:5000/limited') ,
+                loader:() => fetch('https://ankan-print-assignment-server.vercel.app/limited') ,
                 element: <Home></Home>
             },
             {
                 path: '/services',
-                loader:() => fetch('http://localhost:5000/services'),
+                loader:() => fetch('https://ankan-print-assignment-server.vercel.app/services'),
                 element: <Services></Services>
             },
             {
                 path: '/service/:id',
                 loader:({params}) => {
-                    return fetch(`http://localhost:5000/service/${params.id}`)
+                    return fetch(`https://ankan-print-assignment-server.vercel.app/service/${params.id}`)
                 },
                 element: <Service></Service>
             },
@@ -46,13 +50,17 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/addservice',
-                loader: () => fetch('http://localhost:5000/services'),
-                element: <AddService></AddService>
+                loader: () => fetch('https://ankan-print-assignment-server.vercel.app/services'),
+                element: <PrivetRoute><AddService></AddService></PrivetRoute>
             },
             {
                 path: '/edit/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/edit/${params.id}`),
+                loader: ({params}) => fetch(`https://ankan-print-assignment-server.vercel.app/edit/${params.id}`),
                 element: <Edit></Edit>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     }

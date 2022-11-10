@@ -15,15 +15,17 @@ const Header = () => {
   const menuItems = <>
     <li><Link to='/'> Home</Link></li>
     <li><Link to='/services'>Services</Link></li>
+    <li><Link to='/blog'>Blog</Link></li>
+    <li><Link to='/addservice'>Add Service</Link></li>
     <>{
-      user?.email ?
+      user?.uid &&
+    <>
+    <li><Link to='/myreviews'>My Reviews</Link></li>
     <li>
       <Button onClick={handleLogOut} gradientDuoTone='purpleToBlue' size='xs'>Log Out</Button>
-      <li><Link to='/myreviews'>My Reviews</Link></li>
-      <li><Link to='/addservice'>Add Service</Link></li>
     </li>
-    :
-    <li> <Link to='/login'>Login</Link></li>
+    </>
+   
     }</>
   </>
     return (
@@ -44,6 +46,14 @@ const Header = () => {
     </span>
   </Navbar.Brand>
   <div className="flex md:order-2">
+  {!user?.uid &&
+  <>
+  <Button className='mr-2 mt-2' gradientDuoTone='purpleToBlue' size='xs'><Link to='/login'>Login</Link></Button>
+    <Button className='mr-2 mt-2' gradientDuoTone='purpleToBlue' size='xs'><Link to='/signup'>Sign Up</Link></Button>
+  </> 
+
+  }
+    
     <Dropdown
       arrowIcon={false}
       inline={true}
@@ -66,7 +76,7 @@ const Header = () => {
         </span>
       </Dropdown.Header>
       <Dropdown.Divider />
-      <Dropdown.Item>
+      <Dropdown.Item onClick={handleLogOut}>
         Sign out
       </Dropdown.Item>
     </Dropdown>
