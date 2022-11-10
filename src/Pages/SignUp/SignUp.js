@@ -1,10 +1,13 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const { signUp, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
 
     const handleSubmit = async (event) => {
@@ -19,11 +22,13 @@ const SignUp = () => {
         // user Sign Up
         await signUp(email, password, name, photoURL)
         form.reset()
+        navigate(from, {replace: true});
     }
 
     // Google sign in
     const handleGoogleSignIn = async() => {
         await googleSignIn();
+        navigate(from, {replace: true});
     }
     return (
         <div className='md:w-1/2 bg-purple-100 my-8 mx-auto border border-purple-600 p-8 rounded-lg'>

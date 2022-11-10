@@ -24,33 +24,36 @@ const Home = () => {
                 </Carousel>
             </div>
 
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-6'>
-                    {
-                        services.map(service => <ServiceCard
-                            key={service._id}
-                            service={service}
-                        ></ServiceCard>)
-                    }
-                </div>
-                <Link to='/services'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-6'>
+                {
+                    services.map(service => <ServiceCard
+                        key={service._id}
+                        service={service}
+                    ></ServiceCard>)
+                }
+            </div>
+            <Link to='/services'>
                 <Button className='mx-auto' gradientDuoTone="purpleToBlue">
                     See All
                 </Button>
             </Link>
 
             <div className='w-3/4 mx-auto my-12'>
-            <div className="hero min-h-screen " style={{  backgroundImage: `url("https://tinyworkshops.com/wp-content/uploads/2021/12/FEATURE_screen-printing-kits.jpg")` }}>
-  <div className="hero-overlay bg-opacity-60"></div>
-  <div className="hero-content text-center text-neutral-content">
-    <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold">Screen Printing</h1>
-      <p className="mb-5">Screen printing involves using a photographic process to transfer your design onto a silk screen. Each colour used within the design requires its own screen. Your artwork is copied onto transparent film and then transferred photographically onto a silk screen that is coated with photographic emulsion.</p>
-    </div>
-  </div>
-</div>
+                <div className="hero min-h-screen " style={{ backgroundImage: `url("https://tinyworkshops.com/wp-content/uploads/2021/12/FEATURE_screen-printing-kits.jpg")` }}>
+                    <div className="hero-overlay bg-opacity-60"></div>
+                    <div className="hero-content text-center text-neutral-content">
+                        <div className="max-w-md">
+                            <h1 className="mb-5 text-5xl font-bold">Screen Printing</h1>
+                            <p className="mb-5">Screen printing involves using a photographic process to transfer your design onto a silk screen. Each colour used within the design requires its own screen. Your artwork is copied onto transparent film and then transferred photographically onto a silk screen that is coated with photographic emulsion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+               
             </div>
         </div>
-    );
+    )
 };
 
 export default Home;
