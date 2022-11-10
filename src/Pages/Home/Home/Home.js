@@ -50,7 +50,18 @@ const Home = () => {
                 </div>
             </div>
             <div>
-               
+                <div className="hero min-h-screen bg-base-200">
+                    <div className="hero-content flex-col lg:flex-row-reverse">
+                        <img className='w-1/2' src="https://images.squarespace-cdn.com/content/v1/5a099cb3017db2f48e15a5ce/1646057454415-9S1O8V2084W5EZHL346A/9CA683DE-F663-4FC0-A51E-6681A2A2E95F?format=1500w" alt=''/>
+                        <div>
+                            <h1 className="text-5xl font-bold">Trust Me</h1>
+                            <p className="py-6">I am providing you the best service ever.My first priority is customer satisfaction.</p>
+                            <Link to='/services'>
+                            <button className="btn btn-primary">Get Started</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -11,8 +11,6 @@ const Foo = () => {
                         <div>
                             <Footer.Brand
                                 href="#"
-                                src="https://flowbite.com/docs/images/logo.svg"
-                                alt="Flowbite Logo"
                                 name="Ankan"
                             />
                         </div>
