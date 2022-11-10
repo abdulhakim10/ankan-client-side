@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 
@@ -54,11 +55,9 @@ const MyReviews = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        Zemlak, Daniel and Leannon
-                                        <br />
-                                        <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                        <span  className="badge m-2 p-4 badge-ghost badge-sm">{sR.review}</span>
                                     </td>
-                                    <td>Purple</td>
+                                    <Link to={`/edit/${sR._id}`}><button className="btn-ghost">Edit</button></Link>
                                     <th>
                                        <button onClick={() => handleDelete(sR._id)} className='btn btn-ghost'>X</button>
                                     </th>
