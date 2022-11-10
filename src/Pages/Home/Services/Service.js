@@ -52,14 +52,14 @@ const Service = () => {
             <div className="card lg:card-side bg-base-100 shadow-xl">
                 <figure><img src={img} alt="Album" /></figure>
                 <div className="card-body md:w-1/2">
-                    <h2 className="card-title">{title}</h2>
+                    <h2 className="card-title text-3xl font-bold">{title}</h2>
                     <p>{description}</p>
-                    <h4 className="text-xl">Price: ${price}</h4>
+                    <h4 className="text-2xl font-bold">Price: ${price}</h4>
                 </div>
             </div>
             {user?.email ?
-                <div>
-                    <h2 className="text-4xl">Reviews</h2>
+                <div className='w-4/5 mx-auto my-8 border border-purple-600 bg-fuchsia-100 rounded-lg p-10'>
+                    <h2 className="text-2xl mb-4">Add Reviews</h2>
                     <form onSubmit={handleReview} className='flex'>
                         <textarea className="textarea textarea-bordered w-2/3" name='review' placeholder="Write Review"></textarea>
                         <Button type='submit' className='mt-10 ml-2'>Add Review</Button>
