@@ -1,5 +1,3 @@
-import { data } from 'autoprefixer';
-import { Dropdown } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
@@ -7,6 +5,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
     const [comments, setComments] = useState([]);
+    const [newReviews, setNewReviews] = useState([])
 
     useEffect(() => {
         fetch('http://localhost:5000/reviews')
@@ -14,9 +13,24 @@ const MyReviews = () => {
             .then(data => {
                 setComments(data)
             })
-    }, [])
+    }, [newReviews])
     const selectedReviews = comments.filter(comment => comment.email === user.email)
     console.log(selectedReviews)
+
+    
+   const handleDelete = (id) =>{
+    fetch(`http://localhost:5000/reviews/${id}`, {
+        method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount > 0){
+            const remaining = selectedReviews.filter(sR => sR._id !== id)
+            setNewReviews(remaining)
+        }
+    })
+    .catch(e => console.error(e))
+   }
     return (
         <div>
             <h2 className="text-2xl">Reviews: {selectedReviews.length}</h2>
@@ -46,14 +60,7 @@ const MyReviews = () => {
                                     </td>
                                     <td>Purple</td>
                                     <th>
-                                        <Dropdown label="Dropdown">
-                                            <Dropdown.Item>
-                                                Dashboard
-                                            </Dropdown.Item>
-                                            <Dropdown.Item>
-                                                Settings
-                                            </Dropdown.Item>
-                                        </Dropdown>
+                                       <button onClick={() => handleDelete(sR._id)} className='btn btn-ghost'>X</button>
                                     </th>
                                 </tr>
                             </tbody>
