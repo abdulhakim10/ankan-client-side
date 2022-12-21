@@ -1,5 +1,6 @@
 import { Button, Label, TextInput } from 'flowbite-react';
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 const AddService = () => {
@@ -34,11 +35,13 @@ const AddService = () => {
         })
         .then(res => res.json)
         .catch(e => console.error(e))
+        toast.success('Product add successfully')
+        form.reset();
     }
 
     return (
 
-        <div className='md:w-1/2 bg-purple-100 my-8 mx-auto border border-purple-600 p-8 rounded-lg'>
+        <div className='md:w-1/2 my-8 mx-auto border border-purple-600 p-8 rounded-lg'>
              <h2 className="text-3xl font-bold text-center">Add Service</h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 

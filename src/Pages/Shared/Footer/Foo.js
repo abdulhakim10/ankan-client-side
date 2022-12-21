@@ -4,7 +4,7 @@ import { BsFacebook, BsInstagram, BsTwitter, BsGithub } from 'react-icons/bs';
 
 const Foo = () => {
     return (
-        <div className='border border-purple-600'>
+        <div className='border border-purple-600 rounded-md p-4'>
             <Footer className='bg-purple-100' container={true}>
                 <div className="w-full">
                     <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">

@@ -29,7 +29,7 @@ const Header = () => {
     }</>
   </>
     return (
-        <div className='border border-purple-600'>
+        <div className='border border-purple-600 rounded-md p-2'>
            <Navbar
            className='bg-purple-100'
   fluid={true}

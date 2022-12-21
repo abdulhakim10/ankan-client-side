@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
@@ -26,6 +27,7 @@ const MyReviews = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
+                    toast.error('Review deleted')
                     const remaining = selectedReviews.filter(sR => sR._id !== id)
                     setNewReviews(remaining)
                 }

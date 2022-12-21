@@ -2,7 +2,7 @@ import React from 'react';
 
 const Review = ({ comment }) => {
     const { name, review, img } = comment;
-    console.log(comment)
+    // console.log(comment)
 
 
     return (

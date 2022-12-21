@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 const Edit = () => {
@@ -22,6 +23,9 @@ const Edit = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            if(data.modifiedCount > 0){
+                toast.success('Review updated')
+            }
         })
         .catch(e => console.error(e))
 

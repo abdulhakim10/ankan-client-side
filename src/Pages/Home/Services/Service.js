@@ -1,5 +1,6 @@
 import { Button } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Review from '../Review/Review';
@@ -31,6 +32,12 @@ const Service = () => {
             body: JSON.stringify(reviews)
         })
             .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.acknowledged === true){
+                    toast.success('Review added successfully')
+                }
+            })
             .catch(e => console.error(e))
         form.reset()
     }
@@ -61,7 +68,7 @@ const Service = () => {
                 <div className='w-4/5 mx-auto my-8 border border-purple-600 bg-fuchsia-100 rounded-lg p-10'>
                     <h2 className="text-2xl mb-4">Add Reviews</h2>
                     <form onSubmit={handleReview} className='flex'>
-                        <textarea className="textarea textarea-bordered w-2/3" name='review' placeholder="Write Review"></textarea>
+                        <textarea className="textarea textarea-bordered w-2/3" required name='review' placeholder="Write Review"></textarea>
                         <Button type='submit' className='mt-10 ml-2'>Add Review</Button>
                     </form>
                 </div>

@@ -1,10 +1,13 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
   const { logIn, googleSignIn, setUser } = useContext(AuthContext);
+  const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
@@ -15,6 +18,8 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+  
+    setLoginError('')
 
     // login with email and password
     logIn(email, password)
@@ -22,10 +27,16 @@ const Login = () => {
       const user = result.user;
       setUser(user)
       console.log(user)
+      if(user.uid){
+        toast.success('Login successful');
+      }
       form.reset();
       navigate(from, {replace: true});
     })
-    .catch(err => console.error(err))
+    .catch(err => {
+      console.log(err.message);
+      setLoginError(err.message);
+    })
 
   }
 
@@ -33,6 +44,7 @@ const Login = () => {
   // Google Sign In
   const handleGoogleSignIn = async() => {
     await googleSignIn();
+    toast.success('Login successful');
     navigate(from, {replace: true});
   }
   return (
@@ -68,6 +80,7 @@ const Login = () => {
             required={true}
           />
         </div>
+        { loginError && <div className='text-red-600'>{loginError}</div> }
         <div className="flex items-center gap-2">
           <Checkbox id="remember" />
           <Label htmlFor="remember">
